@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二维码生成器 - 免费在线 · 本地生成不上传</title>
+<meta name="description" content="免费在线二维码生成器：自定义颜色、点样式、尺寸，支持嵌入 Logo，PNG/SVG 高清下载。纯浏览器本地生成，数据不出设备。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%234f46e5'/><rect x='3.5' y='3.5' width='3.5' height='3.5' fill='white'/><rect x='9' y='3.5' width='3.5' height='3.5' fill='white'/><rect x='3.5' y='9' width='3.5' height='3.5' fill='white'/><rect x='10' y='10' width='2.5' height='2.5' fill='white'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="logo">QR<span>Maker</span></div>
+    <div class="tagline">本地生成 · 免费无广告</div>
+  </div>
+</header>
+
+<main class="wrap layout">
+
+  <section class="panel controls">
+    <h1>二维码生成器</h1>
+    <p class="desc">输入内容，右侧实时预览。全部计算在浏览器本地完成，不上传任何数据。</p>
+
+    <div class="field">
+      <label for="qr-text">内容</label>
+      <textarea id="qr-text" rows="3" placeholder="输入链接或文本，例如 https://example.com"></textarea>
+    </div>
+
+    <div class="field">
+      <label>点样式</label>
+      <div class="segmented" id="dot-style">
+        <button type="button" data-value="square" class="active">方块</button>
+        <button type="button" data-value="extra-rounded">圆角</button>
+        <button type="button" data-value="dots">圆点</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>容错级别 <span class="hint">嵌入 Logo 建议用 H</span></label>
+      <div class="segmented" id="ecc-level">
+        <button type="button" data-value="L">L · 7%</button>
+        <button type="button" data-value="M" class="active">M · 15%</button>
+        <button type="button" data-value="Q">Q · 25%</button>
+        <button type="button" data-value="H">H · 30%</button>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fg-color">前景色</label>
+        <input type="color" id="fg-color" value="#111827">
+      </div>
+      <div class="field">
+        <label for="bg-color">背景色</label>
+        <input type="color" id="bg-color" value="#ffffff">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="size">导出尺寸 <span class="hint" id="size-value">512 × 512</span></label>
+      <input type="range" id="size" min="256" max="2048" step="64" value="512">
+    </div>
+
+    <div class="field">
+      <label>中心 Logo <span class="hint">可选</span></label>
+      <div class="logo-row">
+        <input type="file" id="logo-input" accept="image/*" hidden>
+        <button type="button" class="btn" id="logo-btn">选择图片</button>
+        <button type="button" class="btn danger" id="logo-clear" hidden>移除</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel preview">
+    <div class="qr-box" id="qr-box"></div>
+    <div class="empty-hint" id="empty-hint">输入内容后自动生成 · 当前为示例</div>
+    <div class="download-row">
+      <button type="button" class="btn primary" id="dl-png">下载 PNG</button>
+      <button type="button" class="btn" id="dl-svg">下载 SVG</button>
+    </div>
+    <p class="note">容错级别越高，二维码被遮挡（如嵌 Logo）后越容易被扫出。</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">本地生成，数据不出浏览器 · 托管于 GitHub + Cloudflare Pages（零成本）</div>
+</footer>
+
+<script src="lib/qr-code-styling.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
